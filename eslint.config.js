@@ -12,6 +12,12 @@ export default [
       globals: globals.browser
     }
   },
+  {
+    languageOptions: {
+      globals: globals.node
+    },
+    files: ['scripts/*.{js,mjs,cjs}']
+  },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   {

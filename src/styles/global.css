@@ -12,3 +12,7 @@ html {
   font-size: var(--font-size);
   font-family: var(--font-sans);
 }
+
+main {
+  padding: min(8vw, 10em);
+}
