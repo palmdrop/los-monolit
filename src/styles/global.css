@@ -1,0 +1,14 @@
+:root {
+  --font-serif: 'Times New Roman', Times, serif;
+  --font-sans: Helvetica, Arial, sans-serif;
+
+  --max-font-size: 40px;
+  --min-font-size: 16px;
+
+  --font-size: clamp(var(--min-font-size), 3vw, var(--max-font-size));
+}
+
+html {
+  font-size: var(--font-size);
+  font-family: var(--font-sans);
+}
