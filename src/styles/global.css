@@ -14,5 +14,27 @@ html {
 }
 
 main {
-  padding: min(8vw, 10em);
+  max-width: 500px;
+  padding-top: 2em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.poem {
+  word-wrap: break-word;
+}
+
+.poem .blank {
+  color: transparent;
+  background-color: transparent;
+}
+
+.poem .blank.separator {
+  background-color: transparent;
+}
+
+.poem .word {
+  font-style: italic;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
 }
