@@ -2,7 +2,15 @@ import { words } from '../content/words';
 import { jublet } from '../content/poems/jublet';
 import { stocknaden } from '../content/poems/stocknaden';
 
-type Source = 'stocknaden' | 'jublet' | 'word';
+export type Source = 'stocknaden' | 'jublet' | 'word';
+
+export type LineData = {
+  isBlank: boolean;
+  source: Source;
+  line: string;
+};
+
+export type PoemData = LineData[];
 
 const random = (a = 1, b?: number) => {
   const hasB = typeof b === 'number';
@@ -22,14 +30,14 @@ const randomJublet = () => jublet.lines[randomInt(jublet.lines.length)];
 
 // TODO: add weights
 const randomLine = ({
-  stocknadenWeight = 0.5,
-  jubletWeight = 0.35,
-  wordWeight = 0.15
+  stocknadenWeight = 0.6,
+  jubletWeight = 0.2,
+  wordWeight = 0.2
 }: {
   stocknadenWeight?: number;
   jubletWeight?: number;
   wordWeight?: number;
-} = {}) => {
+} = {}): Omit<LineData, 'isBlank'> => {
   const r = random();
 
   let line = '';
@@ -54,14 +62,21 @@ const randomLine = ({
 
 export const generatePoem = (
   length = randomInt(5, 15),
-  blankProbability = 0.5
-) => {
-  return [...Array(length)].map(randomLine).map(({ line, source }) => {
+  blankProbability = 0.4
+): PoemData => {
+  let previousBlank = false;
+  return [...Array(length)].map(randomLine).map(({ line, source }, i) => {
     const isBlank = random(0, 1) < blankProbability;
+    const transformedLine =
+      i === 0 || previousBlank || source === 'word'
+        ? line
+        : `${line.at(0)?.toUpperCase()}${line.slice(1)}`;
+
+    previousBlank = isBlank;
     return {
       isBlank,
       source,
-      line: isBlank ? line.replace(/./g, '_') : line
+      line: transformedLine
     };
   });
 };

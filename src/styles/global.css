@@ -5,6 +5,8 @@
   --max-font-size: 40px;
   --min-font-size: 16px;
 
+  --line-height: 1.2em;
+
   --font-size: clamp(var(--min-font-size), 3vw, var(--max-font-size));
 }
 
@@ -14,22 +16,30 @@ html {
 }
 
 main {
-  max-width: 500px;
+  line-height: var(--line-height);
+  max-width: 15em;
   padding-top: 2em;
   margin-left: auto;
   margin-right: auto;
 }
 
 .poem {
-  word-wrap: break-word;
+  /*
+  text-align: justify;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  */
+
+  padding-bottom: 1em;
 }
 
-.poem .blank {
+.poem .line {
+  text-shadow: 1px 1px rgba(184, 180, 122, 0.143);
+}
+
+.poem .blank,
+.poem .separator {
   color: transparent;
-  background-color: transparent;
-}
-
-.poem .blank.separator {
   background-color: transparent;
 }
 
