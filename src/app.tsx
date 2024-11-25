@@ -3,31 +3,24 @@ import './styles/fonts.css';
 import './styles/global.css';
 
 import { generatePoem, type PoemData } from './poem/generate';
-import { createEffect, createSignal, For } from 'solid-js';
-import { Poem } from './components/Poem';
-
-const images = (
-  Object.values(
-    import.meta.glob('./content/images/*.jpg', { eager: true })
-  ) as { default: string }[]
-).map(image => image.default);
+import { createEffect, createSignal } from 'solid-js';
+import { pickImages } from './images/pick';
+import Renderer from './components/Renderer';
 
 // TODO: generate a list of words in paragraphs (poems), include "blacked out" or whitespace, render using spans
 
 const poemCount = 10;
+const imagesCount = 10 * poemCount;
 
 export default function App() {
   const [poems, setPoems] = createSignal<PoemData[]>([]);
+  const [images, setImages] = createSignal<string[]>([]);
 
   // NOTE: doing this at root level of the component, or in memo, causes hydration mismatch
   createEffect(() => {
-    // setPoem(generatePoem());
     setPoems([...Array(poemCount)].map(() => generatePoem()));
+    setImages(pickImages(imagesCount));
   });
 
-  return (
-    <main>
-      <For each={poems()}>{poem => <Poem poem={poem} />}</For>
-    </main>
-  );
+  return <Renderer poems={poems()} images={images()} />;
 }

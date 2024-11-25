@@ -1,6 +1,7 @@
 import { words } from '../content/words';
 import { jublet } from '../content/poems/jublet';
 import { stocknaden } from '../content/poems/stocknaden';
+import { random, randomInt } from '~/utils/random';
 
 export type Source = 'stocknaden' | 'jublet' | 'word';
 
@@ -10,16 +11,9 @@ export type LineData = {
   line: string;
 };
 
-export type PoemData = LineData[];
+export type NewLine = 'newline';
 
-const random = (a = 1, b?: number) => {
-  const hasB = typeof b === 'number';
-  const min = hasB ? a : 0;
-  const max = hasB ? b : a;
-  return Math.random() * (max - min) + min;
-};
-
-const randomInt = (a = 1, b?: number) => Math.floor(random(a, b));
+export type PoemData = (LineData | NewLine)[];
 
 const randomWord = () => words[randomInt(words.length)];
 
@@ -30,9 +24,9 @@ const randomJublet = () => jublet.lines[randomInt(jublet.lines.length)];
 
 // TODO: add weights
 const randomLine = ({
-  stocknadenWeight = 0.6,
+  stocknadenWeight = 0.5,
   jubletWeight = 0.2,
-  wordWeight = 0.2
+  wordWeight = 0.3
 }: {
   stocknadenWeight?: number;
   jubletWeight?: number;
@@ -61,22 +55,32 @@ const randomLine = ({
 };
 
 export const generatePoem = (
-  length = randomInt(5, 15),
-  blankProbability = 0.4
+  length = randomInt(7, 15),
+  blankProbability = 0.3,
+  newLineProbability = 0.15
 ): PoemData => {
   let previousBlank = false;
-  return [...Array(length)].map(randomLine).map(({ line, source }, i) => {
-    const isBlank = random(0, 1) < blankProbability;
+  return [...Array(length)].map(randomLine).flatMap(({ line, source }, i) => {
+    const isBlank = i !== length - 1 && random() < blankProbability;
     const transformedLine =
       i === 0 || previousBlank || source === 'word'
         ? line
         : `${line.at(0)?.toUpperCase()}${line.slice(1)}`;
 
     previousBlank = isBlank;
-    return {
-      isBlank,
-      source,
-      line: transformedLine
-    };
+
+    const result: PoemData = [
+      {
+        isBlank,
+        source,
+        line: transformedLine
+      }
+    ];
+
+    if (!isBlank && i !== length - 1 && random() < newLineProbability) {
+      result.push('newline');
+    }
+
+    return result;
   });
 };

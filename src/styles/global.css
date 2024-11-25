@@ -2,7 +2,7 @@
   --font-serif: 'Times New Roman', Times, serif;
   --font-sans: Helvetica, Arial, sans-serif;
 
-  --max-font-size: 40px;
+  --max-font-size: 28px;
   --min-font-size: 16px;
 
   --line-height: 1.2em;
@@ -13,28 +13,39 @@
 html {
   font-size: var(--font-size);
   font-family: var(--font-sans);
+
+  background-color: white;
+}
+
+html,
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 main {
   line-height: var(--line-height);
-  max-width: 15em;
+  max-width: 25em;
   padding-top: 2em;
   margin-left: auto;
   margin-right: auto;
+
+  position: relative;
 }
 
 .poem {
-  /*
-  text-align: justify;
-  overflow-wrap: break-word;
-  hyphens: auto;
-  */
-
-  padding-bottom: 1em;
+  z-index: 1;
 }
 
 .poem .line {
-  text-shadow: 1px 1px rgba(184, 180, 122, 0.143);
+  color: rgb(255, 255, 255);
+  mix-blend-mode: difference;
+  /*
+  text-shadow: 1px 1px 1px rgba(184, 180, 122, 0.143);
+    1px 1px 1px rgba(239, 238, 230, 0.903),
+    -1px -1px 1px rgba(239, 238, 230, 0.903);
+    */
 }
 
 .poem .blank,
@@ -43,8 +54,60 @@ main {
   background-color: transparent;
 }
 
+.poem .separator {
+  padding-left: 0.25em;
+}
+
 .poem .word {
   font-style: italic;
   font-family: var(--font-serif);
   font-size: 1.1rem;
+}
+
+.poem::after {
+  content: '[...]';
+  width: 100%;
+
+  font-family: var(--font-serif);
+}
+
+.images {
+  visibility: hidden;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 50%;
+
+  mix-blend-mode: darken;
+  filter: sepia() hue-rotate(-49deg) saturate(1000%);
+  /*
+  filter: brightness(200%) contrast(50%) sepia() hue-rotate(-49deg)
+    saturate(1000%) brightness(400%);
+  */
+}
+
+.images img {
+  width: 100%;
+  margin-bottom: -2em;
+
+  position: relative;
+
+  /*
+  filter: sepia() contrast(200%) hue-rotate(-50deg) brightness(30%);
+  */
+}
+
+main canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 4em;
 }
