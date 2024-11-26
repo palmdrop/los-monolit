@@ -45,11 +45,12 @@ const adaptiveSettings = (
   context: CanvasRenderingContext2D,
   deltaY: number
 ) => {
-  const n = deltaY ** 4.5;
+  const n = deltaY ** 3.5;
   const blur = 3 + n * 6;
   const colorRotation = -10 + 60 * n;
   const sepia = 100;
-  const saturation = 100 + 10000 * n;
+  // const saturation = 100 + 10000 * n;
+  const saturation = 100 + 10000 * n - 10000 * n ** 2;
   context.fillStyle = 'white';
   context.filter = `blur(${blur}px) brightness(65%) sepia(${sepia}%) contrast(200%) hue-rotate(${colorRotation}deg) saturate(${saturation}%)`;
   context.globalAlpha = 0.55 + 0.55 * n;

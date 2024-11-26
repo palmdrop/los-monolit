@@ -5,10 +5,12 @@
   --font-serif: 'Times New Roman', Times, serif;
   --font-sans: Helvetica, Arial, sans-serif;
 
-  --max-font-size: 28px;
+  --max-font-size: 30px;
   --min-font-size: 16px;
-
   --line-height: 1.2em;
+
+  --max-width: 25em;
+  --canvas-padding: 4.9rem;
 
   --font-size: clamp(var(--min-font-size), 3vw, var(--max-font-size));
 }
@@ -29,7 +31,7 @@ html,
 
 main {
   line-height: var(--line-height);
-  max-width: 25em;
+  max-width: var(--max-width);
   margin-left: auto;
   margin-right: auto;
 
@@ -80,7 +82,6 @@ main {
   */
 
 main {
-  --canvas-padding: 4.9rem;
 }
 
 main canvas {
