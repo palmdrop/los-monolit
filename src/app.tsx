@@ -9,8 +9,8 @@ import Renderer from './components/Renderer';
 
 // TODO: generate a list of words in paragraphs (poems), include "blacked out" or whitespace, render using spans
 
-const poemCount = 10;
-const imagesCount = 10 * poemCount;
+const poemCount = 20;
+const imagesCount = 15 * poemCount;
 
 export default function App() {
   const [poems, setPoems] = createSignal<PoemData[]>([]);

@@ -1,11 +1,6 @@
 import { random } from '~/utils/random';
 
-export const setupCanvas = (
-  canvas: HTMLCanvasElement,
-  images: string[],
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
-  _parent: HTMLElement
-) => {
+export const renderCanvas = (canvas: HTMLCanvasElement, images: string[]) => {
   const width = canvas.clientWidth;
   const height = canvas.clientHeight;
   canvas.width = width;
@@ -14,8 +9,15 @@ export const setupCanvas = (
   const context = canvas.getContext('2d');
   if (!context) return;
 
-  context.fillStyle = 'red';
+  // NOTE: or just blue box background, looks pretty good
+  context.fillStyle = 'white';
+  context.filter =
+    'blur(4px) brightness(55%) sepia() contrast(200%) saturate(100%)';
   context.fillRect(0, 0, canvas.width, canvas.height);
+
+  context.globalAlpha = 0.35;
+  // context.globalCompositeOperation = 'luminosity';
+  context.globalCompositeOperation = 'difference';
 
   images.forEach(image => {
     const imageElement = new Image();

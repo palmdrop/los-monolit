@@ -27,25 +27,29 @@ html,
 main {
   line-height: var(--line-height);
   max-width: 25em;
-  padding-top: 2em;
   margin-left: auto;
   margin-right: auto;
 
   position: relative;
+
+  margin-top: 5em;
+  margin-bottom: 5em;
 }
 
 .poem {
   z-index: 1;
+
+  /* NOTE: Better without justify? */
+  text-align: justify;
 }
 
-.poem .line {
+.poem .line,
+.poem::after {
   color: rgb(255, 255, 255);
   mix-blend-mode: difference;
-  /*
-  text-shadow: 1px 1px 1px rgba(184, 180, 122, 0.143);
-    1px 1px 1px rgba(239, 238, 230, 0.903),
-    -1px -1px 1px rgba(239, 238, 230, 0.903);
-    */
+  text-shadow:
+    1px 1px 4px rgba(239, 238, 230, 0.7),
+    -1px -1px 4px rgba(239, 238, 230, 0.7);
 }
 
 .poem .blank,
@@ -71,43 +75,20 @@ main {
   font-family: var(--font-serif);
 }
 
-.images {
-  visibility: hidden;
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-
-  width: 50%;
-
-  mix-blend-mode: darken;
-  filter: sepia() hue-rotate(-49deg) saturate(1000%);
-  /*
-  filter: brightness(200%) contrast(50%) sepia() hue-rotate(-49deg)
-    saturate(1000%) brightness(400%);
-  */
-}
-
-.images img {
-  width: 100%;
-  margin-bottom: -2em;
-
-  position: relative;
-
-  /*
-  filter: sepia() contrast(200%) hue-rotate(-50deg) brightness(30%);
-  */
+main {
+  --canvas-padding: 4.9rem;
 }
 
 main canvas {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: var(--canvas-padding);
+  left: var(--canvas-padding);
   z-index: -1;
 
-  width: 100%;
-  height: 100%;
+  width: calc(100% - (var(--canvas-padding) * 2));
+  height: calc(100% - (var(--canvas-padding) * 2));
 
-  padding: 4em;
+  box-shadow: 0 0 1em rgba(80, 72, 47, 0.5);
+  border: 1px solid rgba(106, 89, 40, 0.675);
+  border-radius: 2px;
 }
