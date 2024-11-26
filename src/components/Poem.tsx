@@ -6,6 +6,7 @@ type Props = {
 };
 
 const Line = (props: LineData) => {
+  const r = Math.random();
   return (
     <>
       <span
@@ -13,6 +14,9 @@ const Line = (props: LineData) => {
           blank: props.isBlank,
           [props.source]: true,
           line: !props.isBlank
+        }}
+        style={{
+          '--r': r ** 3
         }}
       >
         {props.line}

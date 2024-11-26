@@ -1,4 +1,7 @@
 :root {
+  /*
+  --font-sans: Helvetica, Arial, sans-serif;
+  */
   --font-serif: 'Times New Roman', Times, serif;
   --font-sans: Helvetica, Arial, sans-serif;
 
@@ -38,8 +41,6 @@ main {
 
 .poem {
   z-index: 1;
-
-  /* NOTE: Better without justify? */
   text-align: justify;
 }
 
@@ -47,6 +48,7 @@ main {
 .poem::after {
   color: rgb(255, 255, 255);
   mix-blend-mode: difference;
+  filter: blur(calc(var(--r) * 5px));
   text-shadow:
     1px 1px 4px rgba(239, 238, 230, 0.7),
     -1px -1px 4px rgba(239, 238, 230, 0.7);
@@ -68,12 +70,14 @@ main {
   font-size: 1.1rem;
 }
 
+/*
 .poem::after {
   content: '[...]';
   width: 100%;
 
   font-family: var(--font-serif);
 }
+  */
 
 main {
   --canvas-padding: 4.9rem;
@@ -88,7 +92,7 @@ main canvas {
   width: calc(100% - (var(--canvas-padding) * 2));
   height: calc(100% - (var(--canvas-padding) * 2));
 
-  box-shadow: 0 0 1em rgba(80, 72, 47, 0.5);
-  border: 1px solid rgba(106, 89, 40, 0.675);
-  border-radius: 2px;
+  box-shadow: 0px 0px 0.4em -0.1em rgba(19, 20, 45, 0.5);
+  border: 2px solid rgba(44, 35, 9, 0.675);
+  border-radius: 1px;
 }
