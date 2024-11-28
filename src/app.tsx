@@ -10,7 +10,7 @@ import Renderer from './components/Renderer';
 // TODO: generate a list of words in paragraphs (poems), include "blacked out" or whitespace, render using spans
 
 const poemCount = 20;
-const imagesCount = 15 * poemCount;
+// const imagesCount = 15 * poemCount;
 
 export default function App() {
   const [poems, setPoems] = createSignal<PoemData[]>([]);
@@ -18,6 +18,8 @@ export default function App() {
 
   // NOTE: doing this at root level of the component, or in memo, causes hydration mismatch
   createEffect(() => {
+    const imagesCount = Math.floor((5 * window.innerHeight) / poemCount);
+
     setPoems([...Array(poemCount)].map(() => generatePoem()));
     setImages(pickImages(imagesCount));
   });

@@ -12,7 +12,8 @@
   --max-width: 25em;
   --canvas-padding: 4.9rem;
 
-  --font-size: clamp(var(--min-font-size), 3vw, var(--max-font-size));
+  --font-size: 3vw;
+  /* clamp(var(--min-font-size), 3vw, var(--max-font-size)); */
 }
 
 html {
@@ -50,10 +51,10 @@ main {
 .poem::after {
   color: rgb(255, 255, 255);
   mix-blend-mode: difference;
-  filter: blur(calc(var(--r) * 5px));
+  filter: blur(calc(1px + var(--r) * 4px));
   text-shadow:
-    1px 1px 4px rgba(239, 238, 230, 0.7),
-    -1px -1px 4px rgba(239, 238, 230, 0.7);
+    1px 1px 3px rgba(239, 238, 230, 0.7),
+    -1px -1px 3px rgba(239, 238, 230, 0.7);
 }
 
 .poem .blank,
@@ -93,7 +94,7 @@ main canvas {
   width: calc(100% - (var(--canvas-padding) * 2));
   height: calc(100% - (var(--canvas-padding) * 2));
 
-  box-shadow: 0px 0px 0.4em -0.1em rgba(19, 20, 45, 0.5);
-  border: 2px solid rgba(44, 35, 9, 0.675);
-  border-radius: 1px;
+  box-shadow: 0px 0px 0.4em 0em rgba(19, 20, 45, 0.5);
+  border: 2px solid rgba(36, 28, 6, 0.829);
+  border-radius: 2px;
 }
