@@ -55,8 +55,8 @@ const randomLine = ({
 };
 
 export const generatePoem = (
-  length = randomInt(7, 15),
-  blankProbability = 0.4,
+  length = randomInt(10, 15),
+  blankProbability = 0.3,
   newLineProbability = 0.15
 ): PoemData => {
   let previousBlank = false;

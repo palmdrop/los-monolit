@@ -51,7 +51,7 @@ main {
 .poem::after {
   color: rgb(255, 255, 255);
   mix-blend-mode: difference;
-  filter: blur(calc(1px + var(--r) * 4px));
+  filter: blur(calc(0.03em + var(--r) * 0.17em));
   text-shadow:
     1px 1px 3px rgba(239, 238, 230, 0.7),
     -1px -1px 3px rgba(239, 238, 230, 0.7);
@@ -95,6 +95,8 @@ main canvas {
   height: calc(100% - (var(--canvas-padding) * 2));
 
   box-shadow: 0px 0px 0.4em 0em rgba(19, 20, 45, 0.5);
-  border: 2px solid rgba(36, 28, 6, 0.829);
+  border: 3px solid rgba(36, 28, 6, 0.829);
   border-radius: 2px;
+
+  filter: blur(1px);
 }

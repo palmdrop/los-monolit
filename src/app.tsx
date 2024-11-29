@@ -9,7 +9,7 @@ import Renderer from './components/Renderer';
 
 // TODO: generate a list of words in paragraphs (poems), include "blacked out" or whitespace, render using spans
 
-const poemCount = 20;
+const poemCount = 11;
 // const imagesCount = 15 * poemCount;
 
 export default function App() {
