@@ -3,18 +3,13 @@ import './styles/fonts.css';
 import './styles/global.css';
 
 import { generatePoem, type PoemData } from './poem/generate';
-import { createEffect, createSignal, onCleanup, onMount } from 'solid-js';
+import { createSignal, onMount } from 'solid-js';
 import { pickImages } from './images/pick';
 import Renderer from './components/Renderer';
 
 import seedrandom from 'seedrandom';
 
-// TODO: generate a list of words in paragraphs (poems), include "blacked out" or whitespace, render using spans
-
 const poemCount = 10;
-// const imagesCount = 15 * poemCount;
-
-// seedrandom(Date.now().toString());
 
 const getSeedFromSearchParams = () => {
   const searchParams = new URLSearchParams(window.location.search);
@@ -35,6 +30,7 @@ export default function App() {
     seedrandom(seed, { global: true });
 
     const imagesCount = Math.floor((5 * window.innerHeight) / poemCount);
+
     setPoems([...Array(poemCount)].map(() => generatePoem()));
     setImages(pickImages(imagesCount));
   };

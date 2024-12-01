@@ -1,5 +1,6 @@
 import { random } from '~/utils/random';
 
+// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
 const normalSettings = (context: CanvasRenderingContext2D) => {
   const blur = (4 * window.innerWidth) / 1500;
   const colorRotation = -0;
@@ -12,6 +13,7 @@ const normalSettings = (context: CanvasRenderingContext2D) => {
   context.globalCompositeOperation = 'difference';
 };
 
+// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
 const gooSettings = (context: CanvasRenderingContext2D) => {
   const colorRotation = 15;
   const sepia = 100;
@@ -23,6 +25,7 @@ const gooSettings = (context: CanvasRenderingContext2D) => {
   context.globalCompositeOperation = 'difference';
 };
 
+// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
 const neonSettings = (context: CanvasRenderingContext2D) => {
   const colorRotation = -210;
   const sepia = 90;
@@ -33,6 +36,7 @@ const neonSettings = (context: CanvasRenderingContext2D) => {
   context.globalCompositeOperation = 'hard-light';
 };
 
+// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
 const neon2Settings = (context: CanvasRenderingContext2D) => {
   const colorRotation = -240;
   const sepia = 100;
@@ -47,6 +51,7 @@ const ease = (t: number) => {
   return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
 };
 
+// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
 const adaptiveSettings = (
   context: CanvasRenderingContext2D,
   deltaY: number
@@ -94,9 +99,6 @@ export const renderCanvas = async (
   const context = canvas.getContext('2d');
   if (!context) return;
 
-  // normalSettings(context);
-  // gooSettings(context);
-
   context.fillRect(0, 0, canvas.width, canvas.height);
 
   const imageElements = await Promise.all(
@@ -114,7 +116,6 @@ export const renderCanvas = async (
 
   imageElements.forEach(async imageElement => {
     const imageWidth = width * random(0.3, 0.7);
-    // Math.min(imageElement.width * random(0.2, 0.5), width);
     const imageHeight = (imageWidth / imageElement.width) * imageElement.height;
 
     const imageX = random(-imageWidth * 0.5, width - imageWidth * 0.5);
