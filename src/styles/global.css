@@ -55,6 +55,8 @@ main {
   text-shadow:
     1px 1px 3px rgba(239, 238, 230, 0.7),
     -1px -1px 3px rgba(239, 238, 230, 0.7);
+
+  hyphens: auto;
 }
 
 .poem .blank,

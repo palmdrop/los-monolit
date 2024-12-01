@@ -71,8 +71,8 @@ const adaptive2Settings = (
 
   const blur = (5 * window.innerWidth) / 1500;
   const colorRotation = -10;
-  const sepia = 80;
-  const saturation = 100 - 45 * n ** 2;
+  const sepia = 90;
+  const saturation = 100 - 15 * n ** 2;
   const brightness = 75 - 25 * n ** 2;
 
   context.fillStyle = 'white';
@@ -123,35 +123,10 @@ export const renderCanvas = async (
     const deltaY = (imageY + imageHeight * 0.5) / height;
 
     // neon2Settings(context);
-    //normalSettings(context);
-    // gooSettings(context);
+    // normalSettings(context);
+    //gooSettings(context);
     // adaptiveSettings(context, deltaY);
     adaptive2Settings(context, deltaY);
     context.drawImage(imageElement, imageX, imageY, imageWidth, imageHeight);
   });
-
-  /*
-  images.forEach(image => {
-    const imageElement = new Image();
-    imageElement.src = image;
-    imageElement.onload = () => {
-      const imageWidth = width * random(0.3, 0.7);
-      // Math.min(imageElement.width * random(0.2, 0.5), width);
-      const imageHeight =
-        (imageWidth / imageElement.width) * imageElement.height;
-
-      const imageX = random(-imageWidth * 0.5, width - imageWidth * 0.5);
-      const imageY = random(-imageHeight * 0.5, height - imageHeight * 0.5);
-
-      const deltaY = (imageY + imageHeight * 0.5) / height;
-
-      // neon2Settings(context);
-      //normalSettings(context);
-      // gooSettings(context);
-      // adaptiveSettings(context, deltaY);
-      adaptive2Settings(context, deltaY);
-      context.drawImage(imageElement, imageX, imageY, imageWidth, imageHeight);
-    };
-  });
-  */
 };
