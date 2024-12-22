@@ -28,5 +28,7 @@ gitignore
 .DS_Store
 Thumbs.db
 
-src/content
 screenshots
+src/content/*
+!src/content/poems
+src/content/poems/*.ts
