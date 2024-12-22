@@ -5,6 +5,7 @@
     "dev": "vinxi dev",
     "prebuild": "bash ./scripts/setup.sh",
     "build": "vinxi build",
+    "raw-build": "vinxi build",
     "start": "vinxi start",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
